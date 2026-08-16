@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bank.mapper.AccountMapper">
+
+    <resultMap id="AccountResultMap" type="com.bank.model.Account">
+        <id property="id" column="id"/>
+        <result property="accountNumber" column="account_number"/>
+        <result property="userId" column="user_id"/>
+        <result property="accountType" column="account_type"/>
+        <result property="balance" column="balance"/>
+        <result property="status" column="status"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="findById" resultMap="AccountResultMap">
+        SELECT id, account_number, user_id, account_type, balance, status, created_at
+        FROM accounts WHERE id = #{id}
+    </select>
+
+    <select id="findByAccountNumber" resultMap="AccountResultMap">
+        SELECT id, account_number, user_id, account_type, balance, status, created_at
+        FROM accounts WHERE account_number = #{accountNumber}
+    </select>
+
+    <select id="findByUserId" resultMap="AccountResultMap">
+        SELECT id, account_number, user_id, account_type, balance, status, created_at
+        FROM accounts WHERE user_id = #{userId} ORDER BY id ASC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO accounts (account_number, user_id, account_type, balance, status)
+        VALUES (#{accountNumber}, #{userId}, #{accountType}, #{balance}, #{status})
+    </insert>
+
+    <update id="updateBalance">
+        UPDATE accounts
+        SET balance = #{balance}
+        WHERE id = #{accountId}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE accounts
+        SET status = #{status}
+        WHERE id = #{accountId}
+    </update>
+
+</mapper>

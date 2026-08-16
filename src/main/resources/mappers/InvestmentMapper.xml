@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bank.mapper.InvestmentMapper">
+
+    <resultMap id="MutualFundResultMap" type="com.bank.model.MutualFund">
+        <id property="id" column="id"/>
+        <result property="fundCode" column="fund_code"/>
+        <result property="fundName" column="fund_name"/>
+        <result property="category" column="category"/>
+        <result property="nav" column="nav"/>
+        <result property="riskLevel" column="risk_level"/>
+    </resultMap>
+
+    <resultMap id="InvestmentResultMap" type="com.bank.model.Investment">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="fundId" column="fund_id"/>
+        <result property="units" column="units"/>
+        <result property="investedAmount" column="invested_amount"/>
+        <result property="currentValue" column="current_value"/>
+        <result property="investmentType" column="investment_type"/>
+        <result property="status" column="status"/>
+        <result property="investedAt" column="invested_at"/>
+        <result property="fundName" column="fund_name"/>
+        <result property="fundCode" column="fund_code"/>
+        <result property="currentNav" column="nav"/>
+    </resultMap>
+
+    <select id="findFundById" resultMap="MutualFundResultMap">
+        SELECT id, fund_code, fund_name, category, nav, risk_level
+        FROM mutual_funds WHERE id = #{id}
+    </select>
+
+    <select id="findFundByCode" resultMap="MutualFundResultMap">
+        SELECT id, fund_code, fund_name, category, nav, risk_level
+        FROM mutual_funds WHERE fund_code = #{fundCode}
+    </select>
+
+    <select id="findAllFunds" resultMap="MutualFundResultMap">
+        SELECT id, fund_code, fund_name, category, nav, risk_level
+        FROM mutual_funds ORDER BY id ASC
+    </select>
+
+    <update id="updateFundNav">
+        UPDATE mutual_funds
+        SET nav = #{nav}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findInvestmentById" resultMap="InvestmentResultMap">
+        SELECT i.id, i.user_id, i.fund_id, i.units, i.invested_amount, i.current_value, i.investment_type, i.status, i.invested_at,
+               mf.fund_name, mf.fund_code, mf.nav
+        FROM investments i
+        JOIN mutual_funds mf ON i.fund_id = mf.id
+        WHERE i.id = #{id}
+    </select>
+
+    <select id="findInvestmentsByUserId" resultMap="InvestmentResultMap">
+        SELECT i.id, i.user_id, i.fund_id, i.units, i.invested_amount, i.current_value, i.investment_type, i.status, i.invested_at,
+               mf.fund_name, mf.fund_code, mf.nav
+        FROM investments i
+        JOIN mutual_funds mf ON i.fund_id = mf.id
+        WHERE i.user_id = #{userId}
+        ORDER BY i.invested_at DESC
+    </select>
+
+    <insert id="insertInvestment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO investments (user_id, fund_id, units, invested_amount, current_value, investment_type, status)
+        VALUES (#{userId}, #{fundId}, #{units}, #{investedAmount}, #{currentValue}, #{investmentType}, #{status})
+    </insert>
+
+    <update id="updateInvestment">
+        UPDATE investments
+        SET units = #{units},
+            invested_amount = #{investedAmount},
+            current_value = #{currentValue},
+            status = #{status}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

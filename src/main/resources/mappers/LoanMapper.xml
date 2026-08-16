@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bank.mapper.LoanMapper">
+
+    <resultMap id="LoanResultMap" type="com.bank.model.Loan">
+        <id property="id" column="id"/>
+        <result property="loanNumber" column="loan_number"/>
+        <result property="userId" column="user_id"/>
+        <result property="loanType" column="loan_type"/>
+        <result property="principalAmount" column="principal_amount"/>
+        <result property="interestRate" column="interest_rate"/>
+        <result property="durationMonths" column="duration_months"/>
+        <result property="monthlyEmi" column="monthly_emi"/>
+        <result property="status" column="status"/>
+        <result property="remainingAmount" column="remaining_amount"/>
+        <result property="appliedAt" column="applied_at"/>
+    </resultMap>
+
+    <select id="findById" resultMap="LoanResultMap">
+        SELECT id, loan_number, user_id, loan_type, principal_amount, interest_rate, duration_months, monthly_emi, status, remaining_amount, applied_at
+        FROM loans WHERE id = #{id}
+    </select>
+
+    <select id="findByLoanNumber" resultMap="LoanResultMap">
+        SELECT id, loan_number, user_id, loan_type, principal_amount, interest_rate, duration_months, monthly_emi, status, remaining_amount, applied_at
+        FROM loans WHERE loan_number = #{loanNumber}
+    </select>
+
+    <select id="findByUserId" resultMap="LoanResultMap">
+        SELECT id, loan_number, user_id, loan_type, principal_amount, interest_rate, duration_months, monthly_emi, status, remaining_amount, applied_at
+        FROM loans WHERE user_id = #{userId} ORDER BY applied_at DESC
+    </select>
+
+    <select id="findByStatus" resultMap="LoanResultMap">
+        SELECT id, loan_number, user_id, loan_type, principal_amount, interest_rate, duration_months, monthly_emi, status, remaining_amount, applied_at
+        FROM loans WHERE status = #{status} ORDER BY applied_at ASC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO loans (loan_number, user_id, loan_type, principal_amount, interest_rate, duration_months, monthly_emi, status, remaining_amount)
+        VALUES (#{loanNumber}, #{userId}, #{loanType}, #{principalAmount}, #{interestRate}, #{durationMonths}, #{monthlyEmi}, #{status}, #{remainingAmount})
+    </insert>
+
+    <update id="updateStatus">
+        UPDATE loans
+        SET status = #{status}
+        WHERE id = #{loanId}
+    </update>
+
+    <update id="updateRemainingAmount">
+        UPDATE loans
+        SET remaining_amount = #{remainingAmount}
+        WHERE id = #{loanId}
+    </update>
+
+</mapper>

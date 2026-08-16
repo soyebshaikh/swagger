@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Import Spring MyBatis Persistence Context -->
+    <import resource="classpath:spring-mybatis.xml"/>
+
+    <!-- Service Beans (Constructor & Property Injections) -->
+    <bean id="authService" class="com.bank.service.AuthServiceImpl">
+        <constructor-arg ref="userMapper"/>
+    </bean>
+
+    <bean id="accountService" class="com.bank.service.AccountServiceImpl">
+        <constructor-arg ref="accountMapper"/>
+        <constructor-arg ref="transactionMapper"/>
+        <property name="producerTemplate" ref="template"/>
+    </bean>
+
+    <bean id="loanService" class="com.bank.service.LoanServiceImpl">
+        <constructor-arg ref="loanMapper"/>
+        <property name="producerTemplate" ref="template"/>
+    </bean>
+
+    <bean id="investmentService" class="com.bank.service.InvestmentServiceImpl">
+        <constructor-arg ref="investmentMapper"/>
+    </bean>
+
+    <!-- Camel RouteBuilder Bean -->
+    <bean id="bankingCamelRoutes" class="com.bank.camel.BankingCamelRoutes"/>
+
+    <!-- JAX-RS Resource Beans (@Path, @GET, @POST, @Produces, @Consumes) -->
+    <bean id="authResource" class="com.bank.resource.AuthResource">
+        <constructor-arg ref="authService"/>
+    </bean>
+
+    <bean id="accountResource" class="com.bank.resource.AccountResource">
+        <constructor-arg ref="accountService"/>
+    </bean>
+
+    <bean id="loanResource" class="com.bank.resource.LoanResource">
+        <constructor-arg ref="loanService"/>
+    </bean>
+
+    <bean id="investmentResource" class="com.bank.resource.InvestmentResource">
+        <constructor-arg ref="investmentService"/>
+    </bean>
+
+    <bean id="paymentResource" class="com.bank.resource.PaymentResource"/>
+
+    <!-- Import Apache Camel Context -->
+    <import resource="classpath:camel-context.xml"/>
+
+</beans>

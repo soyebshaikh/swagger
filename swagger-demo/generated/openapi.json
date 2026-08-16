@@ -1,0 +1,630 @@
+{
+  "openapi" : "3.1.0",
+  "info" : {
+    "title" : "Apex Banking Application REST API",
+    "description" : "Auto-generated OpenAPI 3.1 specification constructed dynamically from AST Java source scanners.",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:9090",
+    "description" : "Banking Application Backend Server"
+  } ],
+  "paths" : {
+    "/accounts/balance" : {
+      "get" : {
+        "tags" : [ "AccountResource" ],
+        "summary" : "Endpoint: getBalance",
+        "description" : "Discovered automatically from method AccountResource.getBalance()",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/details" : {
+      "get" : {
+        "tags" : [ "AccountResource" ],
+        "summary" : "Endpoint: getAccountDetails",
+        "description" : "Discovered automatically from method AccountResource.getAccountDetails()",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/withdraw" : {
+      "post" : {
+        "tags" : [ "AccountResource" ],
+        "summary" : "Endpoint: withdraw",
+        "description" : "Discovered automatically from method AccountResource.withdraw()",
+        "requestBody" : {
+          "description" : "Request payload of type Map<String,Object>",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/deposit" : {
+      "post" : {
+        "tags" : [ "AccountResource" ],
+        "summary" : "Endpoint: deposit",
+        "description" : "Discovered automatically from method AccountResource.deposit()",
+        "requestBody" : {
+          "description" : "Request payload of type Map<String,Object>",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/transactions" : {
+      "get" : {
+        "tags" : [ "AccountResource" ],
+        "summary" : "Endpoint: getTransactions",
+        "description" : "Discovered automatically from method AccountResource.getTransactions()",
+        "parameters" : [ {
+          "name" : "accountNumber",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "tags" : [ "AuthResource" ],
+        "summary" : "Endpoint: login",
+        "description" : "Discovered automatically from method AuthResource.login()",
+        "requestBody" : {
+          "description" : "Request payload of type Map<String,String>",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register" : {
+      "post" : {
+        "tags" : [ "AuthResource" ],
+        "summary" : "Endpoint: register",
+        "description" : "Discovered automatically from method AuthResource.register()",
+        "requestBody" : {
+          "description" : "Request payload of type User",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/User"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/investments/funds" : {
+      "get" : {
+        "tags" : [ "InvestmentResource" ],
+        "summary" : "Endpoint: getAllMutualFunds",
+        "description" : "Discovered automatically from method InvestmentResource.getAllMutualFunds()",
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/investments/buy" : {
+      "post" : {
+        "tags" : [ "InvestmentResource" ],
+        "summary" : "Endpoint: buyMutualFund",
+        "description" : "Discovered automatically from method InvestmentResource.buyMutualFund()",
+        "requestBody" : {
+          "description" : "Request payload of type Map<String,Object>",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/investments/user/userId" : {
+      "get" : {
+        "tags" : [ "InvestmentResource" ],
+        "summary" : "Endpoint: getUserInvestments",
+        "description" : "Discovered automatically from method InvestmentResource.getUserInvestments()",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/apply" : {
+      "post" : {
+        "tags" : [ "LoanResource" ],
+        "summary" : "Endpoint: applyForLoan",
+        "description" : "Discovered automatically from method LoanResource.applyForLoan()",
+        "requestBody" : {
+          "description" : "Request payload of type Map<String,Object>",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/loans/user/userId" : {
+      "get" : {
+        "tags" : [ "LoanResource" ],
+        "summary" : "Endpoint: getLoansByUser",
+        "description" : "Discovered automatically from method LoanResource.getLoansByUser()",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/cancel" : {
+      "post" : {
+        "tags" : [ "PaymentResource" ],
+        "summary" : "Endpoint: cancelPayment",
+        "description" : "Discovered automatically from method PaymentResource.cancelPayment()",
+        "requestBody" : {
+          "description" : "Request payload of type CancelPaymentRequest",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CancelPaymentRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful Operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Account" : {
+        "type" : "object",
+        "properties" : {
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "balance" : {
+            "type" : "number"
+          },
+          "accountType" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "accountNumber" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Domain Model Schema for Account"
+      },
+      "MutualFund" : {
+        "type" : "object",
+        "properties" : {
+          "nav" : {
+            "type" : "number"
+          },
+          "riskLevel" : {
+            "type" : "string"
+          },
+          "fundCode" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "fundName" : {
+            "type" : "string"
+          },
+          "category" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Domain Model Schema for MutualFund"
+      },
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "role" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "fullName" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "username" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Domain Model Schema for User"
+      },
+      "Loan" : {
+        "type" : "object",
+        "properties" : {
+          "interestRate" : {
+            "type" : "number"
+          },
+          "remainingAmount" : {
+            "type" : "number"
+          },
+          "durationMonths" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "monthlyEmi" : {
+            "type" : "number"
+          },
+          "loanType" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "loanNumber" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "principalAmount" : {
+            "type" : "number"
+          },
+          "appliedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Domain Model Schema for Loan"
+      },
+      "Transaction" : {
+        "type" : "object",
+        "properties" : {
+          "transactionType" : {
+            "type" : "string"
+          },
+          "accountId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "amount" : {
+            "type" : "number"
+          },
+          "transactionReference" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "balanceAfter" : {
+            "type" : "number"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "description" : "Domain Model Schema for Transaction"
+      },
+      "CancelPaymentRequest" : {
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string"
+          },
+          "requestedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "paymentId" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        },
+        "description" : "Domain Model Schema for CancelPaymentRequest"
+      },
+      "Investment" : {
+        "type" : "object",
+        "properties" : {
+          "investedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "fundId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "fundCode" : {
+            "type" : "string"
+          },
+          "investedAmount" : {
+            "type" : "number"
+          },
+          "id" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "units" : {
+            "type" : "number"
+          },
+          "investmentType" : {
+            "type" : "string"
+          },
+          "fundName" : {
+            "type" : "string"
+          },
+          "userId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "currentNav" : {
+            "type" : "number"
+          },
+          "currentValue" : {
+            "type" : "number"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Domain Model Schema for Investment"
+      },
+      "PaymentResponse" : {
+        "type" : "object",
+        "properties" : {
+          "paymentId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "processedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "refundAmount" : {
+            "type" : "number"
+          }
+        },
+        "description" : "Domain Model Schema for PaymentResponse"
+      }
+    }
+  }
+}

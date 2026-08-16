@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bank.mapper.UserMapper">
+
+    <resultMap id="UserResultMap" type="com.bank.model.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullName" column="full_name"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="role" column="role"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <select id="findById" resultMap="UserResultMap">
+        SELECT id, username, password, full_name, email, phone, role, created_at
+        FROM users WHERE id = #{id}
+    </select>
+
+    <select id="findByUsername" resultMap="UserResultMap">
+        SELECT id, username, password, full_name, email, phone, role, created_at
+        FROM users WHERE username = #{username}
+    </select>
+
+    <select id="findAll" resultMap="UserResultMap">
+        SELECT id, username, password, full_name, email, phone, role, created_at
+        FROM users ORDER BY id ASC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (username, password, full_name, email, phone, role)
+        VALUES (#{username}, #{password}, #{fullName}, #{email}, #{phone}, #{role})
+    </insert>
+
+    <update id="update">
+        UPDATE users
+        SET full_name = #{fullName},
+            email = #{email},
+            phone = #{phone},
+            role = #{role}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+</mapper>
